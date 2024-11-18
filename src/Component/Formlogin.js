@@ -17,7 +17,7 @@ function Formlogin({getLoginData}) {
   };
 
   const validateEmail = (email) => {
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    const regex = /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     let error = emailError;
     let valid = formvalid;

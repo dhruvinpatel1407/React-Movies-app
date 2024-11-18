@@ -11,7 +11,7 @@ function Home() {
       ["top1", "top2", "top3", "top4", "top5", "top6" , "top7", "top8", "top9", "top10"].includes(trailer.id)
     );
     setTrendingMovies(filteredMovies);
-  }, [movies]);
+  }, []);
 
 
   return (

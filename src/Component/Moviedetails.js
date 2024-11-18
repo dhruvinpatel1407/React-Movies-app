@@ -6,7 +6,7 @@ function Moviedetails() {
   const params = useParams();
 
   const filteredData = movies.filter(
-    (movie) => (movie.title == params.movies_Title)
+    (movie) => (movie.title === params.movies_Title)
   );
 
   return (
@@ -38,10 +38,10 @@ function Moviedetails() {
                   <a
                     href={movie.imdb_link}
                     target="_blank"
-                    className="text-blue-600"
+                  
                     rel="noopener noreferrer"
                   >
-                    {movie.imdbid} *click here to watch trailer...
+                    <button className="text-white bg-red-900 border border-1 mx-4 p-2 my-2 rounded-lg">WATCH NOW</button>
                   </a>
                 </div>
               </div>
