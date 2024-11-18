@@ -1,8 +1,6 @@
 import { React, useState, useEffect } from "react";
 import moviesdata from "../Movies2.json";
-import { Link } from "react-router-dom";
 import CarouselMovie from "./CarouselMovie";
-import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
 
 function Movie() {
@@ -15,32 +13,9 @@ function Movie() {
   const [adventureMovies, setAdventureMovies] = useState([]);
   const [comedyMovies, setComedyMovies] = useState([]);
   const [horrorMovies, setHorrorMovies] = useState([]);
+
  
-  // useEffect(() => {
-  //   fetchMovies();
-  // }, []); // This runs only once when the component mounts
-
-  // const fetchMovies = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://imdb-top-100-movies.p.rapidapi.com/", // Your actual API URL
-  //       {
-  //         headers: {
-  //           "x-rapidapi-key":
-  //             "e021f5f300msh8550ffb45be89dbp1ce8c2jsn1f3fe33af0b9",
-  //           "x-rapidapi-host": "imdb-top-100-movies.p.rapidapi.com",
-  //         },
-  //       }
-  //     );
-
-  //     console.log(response);
-  //     setMovies(response.data); // Set the movies data
-  //   } catch (error) {
-  //     console.error("Error fetching movies:", error);
-  //   }
-  // };
-
-  // Filtering the movies after they are fetched
+ // Filtering the movies after they are fetched
   useEffect(() => {
     if (movies.length > 0) {
       setDramaMovies(movies.filter((movie) => movie.genre[0] === "Drama"));
@@ -61,13 +36,10 @@ function Movie() {
   console.log(dramaMovies);
   return (
     <>
-      <div className="bg-black mt-16">
+      <div className="bg-black mt-16 pb-20 overflow-x-hidden">
         {/* Drama Movies */}
-        <div
-          id="drama"
-          className="pt-4 "
-        >
-          <p className="text-white text-2xl my-4">Drama Movies:</p>
+        <div id="drama" className="pt-4 ">
+          <p className="text-white text-2xl my-4 ml-8">Drama Movies:</p>
           <div>
             {dramaMovies.length ? (
               <CarouselMovie movies={dramaMovies} />
@@ -88,8 +60,8 @@ function Movie() {
         </div>
 
         {/* Comedy Movies */}
-        <div id="comedy" >
-          <p className="text-white text-2xl my-4">Comedy Movies:</p>
+        <div id="comedy">
+          <p className="text-white text-2xl my-4 ml-8">Comedy Movies:</p>
           {comedyMovies.length ? (
             <CarouselMovie movies={comedyMovies} />
           ) : (
@@ -108,8 +80,8 @@ function Movie() {
         </div>
 
         {/* Action Movies */}
-        <div id="action" >
-          <p className="text-white text-2xl my-4">Action Movies:</p>
+        <div id="action">
+          <p className="text-white text-2xl my-4 ml-8">Action Movies:</p>
           {actionMovies.length ? (
             <CarouselMovie movies={actionMovies} />
           ) : (
@@ -128,8 +100,8 @@ function Movie() {
         </div>
 
         {/* Crime Movies */}
-        <div id="crime" >
-          <p className="text-white text-2xl my-4">Crime Movies:</p>
+        <div id="crime">
+          <p className="text-white text-2xl my-4 ml-8">Crime Movies:</p>
           {crimeMovies.length ? (
             <CarouselMovie movies={crimeMovies} />
           ) : (
@@ -148,8 +120,8 @@ function Movie() {
         </div>
 
         {/* Horror Movies */}
-        <div id="horror" >
-          <p className="text-white text-2xl my-4">Horror Movies:</p>
+        <div id="horror">
+          <p className="text-white text-2xl my-4 ml-8">Horror Movies:</p>
           {horrorMovies.length ? (
             <CarouselMovie movies={horrorMovies} />
           ) : (
@@ -168,8 +140,8 @@ function Movie() {
         </div>
 
         {/* History Movies */}
-        <div id="history" >
-          <p className="text-white text-2xl my-4">History Movies:</p>
+        <div id="history">
+          <p className="text-white text-2xl my-4 ml-8">History Movies:</p>
           {historyMovies.length ? (
             <CarouselMovie movies={historyMovies} />
           ) : (
@@ -188,8 +160,8 @@ function Movie() {
         </div>
 
         {/* Biography Movies */}
-        <div id="biography" >
-          <p className="text-white text-2xl my-4">Biography Movies:</p>
+        <div id="biography">
+          <p className="text-white text-2xl my-4 ml-8 ">Biography Movies:</p>
           {biographyMovies.length ? (
             <CarouselMovie movies={biographyMovies} />
           ) : (
@@ -208,8 +180,8 @@ function Movie() {
         </div>
 
         {/* Adventure Movies */}
-        <div id="adventure" >
-          <p className="text-white text-2xl my-4">Adventure Movies:</p>
+        <div id="adventure">
+          <p className="text-white text-2xl my-4 ml-8">Adventure Movies:</p>
           {adventureMovies.length ? (
             <CarouselMovie movies={adventureMovies} />
           ) : (
@@ -227,7 +199,7 @@ function Movie() {
           )}
         </div>
       </div>
-      {/* <CarouselMovie movies={movies} /> */}
+     
     </>
   );
 }

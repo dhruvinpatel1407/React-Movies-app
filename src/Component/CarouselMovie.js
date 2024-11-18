@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
-function CarouselMovie({movies}) {
- // const [movies, setMovies] = useState([]);
+function CarouselMovie({ movies }) {
   const settings = {
     dots: false,
     infinite: true,
@@ -18,42 +17,23 @@ function CarouselMovie({movies}) {
       { breakpoint: 480, settings: { slidesToShow: 2, slidesToScroll: 1 } },
     ],
   };
-  // useEffect(() => {
-  //   fetchMovies();
-  // }, []); // This runs only once when the component mounts
-
-  // const fetchMovies = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://imdb-top-100-movies.p.rapidapi.com/", // Your actual API URL
-  //       {
-  //         headers: {
-  //           "x-rapidapi-key":
-  //             "e021f5f300msh8550ffb45be89dbp1ce8c2jsn1f3fe33af0b9",
-  //           "x-rapidapi-host": "imdb-top-100-movies.p.rapidapi.com",
-  //         },
-  //       }
-  //     );
-
-  //     console.log(response);
-  //     setMovies(response.data); // Set the movies data
-  //   } catch (error) {
-  //     console.error("Error fetching movies:", error);
-  //   }
-  // };
 
   return (
-    <div className=" text-white bg-black">
+    <div className=" text-white bg-black ml-16">
       <Slider {...settings}>
         {movies.map((movie) => (
           <div key={movie.id} className="flex justify-center">
-            <div className="movie-card p-4 flex flex-col items-center justify-center w-48 h-64 text-center bg-white bg-opacity-30 border border-1 border-white rounded-md">
-              <img
-                src={movie.image}
-                alt={movie.title}
-                style={{ width: "70%", height: "70%" }}
-              />
-              <p className="mt-2 mx-2 text-sm">{movie.title}</p>
+            <div className="movie-card w-48 h-64  bg-white bg-opacity-30 border border-1 border-white rounded-md">
+              <Link to={`/movies/${movie.title}`}>
+                <div className="flex flex-col items-center justify-center text-center p-3">
+                  <img
+                    src={movie.image}
+                    alt={movie.title}
+                    style={{ width: "70%", height: "70%" }}
+                  />
+                  <p className="mt-2 mx-2 text-lg">{movie.title}</p>
+                </div>
+              </Link>
             </div>
           </div>
         ))}

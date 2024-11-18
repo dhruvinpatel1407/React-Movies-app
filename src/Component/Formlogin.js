@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Formlogin() {
+function Formlogin({getLoginData}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formvalid, setFormValid] = useState(false);
@@ -23,7 +23,7 @@ function Formlogin() {
     let valid = formvalid;
 
     if (!regex.test(email)) {
-      error = "please enter valid email";
+      error = "Please Enter valid email";
       valid = false;
     } else {
       error = "";
@@ -44,7 +44,7 @@ function Formlogin() {
     let valid = formvalid;
 
     if (!regex.test(password)) {
-      error = "please enter valid password";
+      error = "Please Enter valid password";
       valid = false;
     } else {
       error = "";
@@ -67,6 +67,7 @@ function Formlogin() {
         email,
         password,
       };
+      getLoginData(userdata);
       setEmail("");
       setPassword("");
     }
@@ -76,7 +77,7 @@ function Formlogin() {
     <>
       <div className="relative w-full h-screen bg-black ">
         
-        <div className="absolute mx-[30%] inset-0 bg-white bg-opacity-10 ">
+        <div className="absolute mx-[30%] inset-0 bg-white bg-opacity-20 border border-white border-2 ">
           <form
             onSubmit={handleSubmit}
             className="relative z-10 flex flex-col items-center justify-center h-full text-white"
@@ -92,7 +93,7 @@ function Formlogin() {
               onChange={handlechange}
               className="text-white border border-white border-1 p-2 m-2 bg-transparent mt-12"
             />
-            <p>{emailError}</p>
+            <p className="text-red-500">{emailError}</p>
             <label htmlFor="password"></label>
             <input
               type="text"
@@ -103,7 +104,7 @@ function Formlogin() {
               className="text-white border border-white border-1 p-2 m-2  bg-transparent "
               onChange={handlechange}
             />
-            <p>{passwordError}</p>
+            <p className="text-red-500">{passwordError}</p>
 
             <label htmlFor="rememberme" className="text-white">
               <input
@@ -117,7 +118,7 @@ function Formlogin() {
             </label>
 
             <br></br>
-            <button className="my-4 px-6 py-2 bg-black text-white border border-1 border-white rounded-full hover:bg-white hover:bg-opacity-10 ">
+            <button className="hover:bg-transparent border border-white bg-black  text-white font-medium py-2 px-4 rounded">
               Login
             </button>
 

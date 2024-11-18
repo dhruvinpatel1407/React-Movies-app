@@ -2,7 +2,6 @@ import React from "react";
 
 function Display({ feedbackData }) {
   console.log({ feedbackData });
-  const { fullname, phone, email, msg } = feedbackData;
   return (
     <div>
       {feedbackData.map((userdata) => {

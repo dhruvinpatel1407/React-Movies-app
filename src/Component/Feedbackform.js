@@ -12,7 +12,7 @@ function Feedbackform({ getFeedBackData }) {
   const [msgError, setMsgError] = useState("");
 
   const handlechange = (e) => {
-    // console.log(e.target.id, e.target.value);
+   
     if (e.target.id === "fullname") {
       validateName(e.target.value);
     } else if (e.target.id === "email") {
@@ -50,7 +50,7 @@ function Feedbackform({ getFeedBackData }) {
     let valid = formValid;
 
     if (!regex.test(email)) {
-      error = "please enter valid email";
+      error = "Please Enter valid email";
       valid = false;
     } else {
       error = "";
@@ -68,7 +68,7 @@ function Feedbackform({ getFeedBackData }) {
     let valid = formValid;
 
     if (phone.trim() === "") {
-      error = "Please enter a valid contact number";
+      error = "Please Enter a valid contact number";
       valid = false;
     } else if (phone.trim().length !== 10) {
       error = "Contact number should be 10 digits";
@@ -153,7 +153,7 @@ function Feedbackform({ getFeedBackData }) {
                   className="m-2 px-3 py-2 border rounded bg-transparent col-span-2"
                   onChange={handlechange}
                 />
-                <p>{nameError}</p>
+                <p className="text-red-500">{nameError}</p>
               </div>
               <div className="grid grid-cols-3 items-center gap-4">
                 <label htmlFor="email" className="text-right">
@@ -168,7 +168,7 @@ function Feedbackform({ getFeedBackData }) {
                   className="m-2 px-3 py-2 w-100 border rounded bg-transparent col-span-2"
                   onChange={handlechange}
                 />
-                <p>{emailError}</p>
+                <p className="text-red-500">{emailError}</p>
               </div>
               <div className="grid grid-cols-3 items-center gap-4">
                 <label htmlFor="phone" className="text-right">
@@ -183,7 +183,7 @@ function Feedbackform({ getFeedBackData }) {
                   className="m-2 px-3 py-2 border rounded bg-transparent col-span-2"
                   onChange={handlechange}
                 />
-                <p>{phoneError}</p>
+                <p className="text-red-500">{phoneError}</p>
               </div>
               <div className="grid grid-cols-3 items-center gap-4">
                 <label htmlFor="msg" className="text-right">
@@ -199,7 +199,7 @@ function Feedbackform({ getFeedBackData }) {
                   onChange={handlechange}
                   style={{ height: "100%" }}
                 />
-                <p>{msgError}</p>
+                <p className="text-red-500">{msgError}</p>
               </div>
             </div>
 

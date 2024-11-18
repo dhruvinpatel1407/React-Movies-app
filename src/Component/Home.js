@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CarouselMain from "../CarouselMain";
-
+import CarouselMovie from "./CarouselMovie";
+import movies from "../Movies2.json";
 function Home() {
+  const [trendingMovies, setTrendingMovies] = useState([]);
+
+  // Update trendingMovies when the component mounts or movies change
+  useEffect(() => {
+    const filteredMovies = movies.filter((trailer) =>
+      ["top1", "top2", "top3", "top4", "top5", "top6" , "top7", "top8", "top9", "top10"].includes(trailer.id)
+    );
+    setTrendingMovies(filteredMovies);
+  }, [movies]);
+
+
   return (
     <>
-      <div className="bg-black h-screen mt-16">
+      <div className="bg-black mt-16">
         <CarouselMain />
 
         <div className="font-sans text-center bg-black text-white p-5 pt-8">
@@ -24,6 +36,9 @@ function Home() {
             </button>
           </section>
         </div>
+
+            <div className="py-8 pb-24"><p className="m-4 text-2xl text-white">Top Trending Movies</p> <CarouselMovie movies={trendingMovies} /></div>
+       
       </div>
     </>
   );

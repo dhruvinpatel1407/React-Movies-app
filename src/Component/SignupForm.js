@@ -1,130 +1,176 @@
 import React, { useState } from "react";
 
-const SignupForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState({});
+const SignupForm = ({getSignUpData}) => {
+  const [fullname, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formvalid, setFormValid] = useState(false);
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear errors when typing
-    console.log("Form data after change: ", formData); // Add log to check form state
+    if (e.target.id === "email") {
+      validateEmail(e.target.value);
+    } else if (e.target.id === "password") {
+      validatePasswod(e.target.value);
+    } else if (e.target.id === "name") {
+      validateName(e.target.value);
+    }
   };
 
-  const validate = () => {
-    const newErrors = {};
+  const validateName = (name) => {
+    let error = nameError;
+    let valid = formvalid;
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required.";
+    if (!name.trim()) {
+      error = "Please Enter you name";
+      valid = false;
+    } else if (name.trim().length < 3) {
+      error = "Please Enter your full Name";
+      valid = false;
+    } else {
+      error = "";
+      valid = true;
+    }
+    setFullName(name);
+    setNameError(error);
+    setFormValid(valid);
+    return valid;
+  };
+  const validateEmail = (email) => {
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+    let error = emailError;
+    let valid = formvalid;
+
+    if (!regex.test(email)) {
+      error = "Please Enter valid email";
+      valid = false;
+    } else {
+      error = "";
+      valid = true;
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format.";
-    }
+    setEmail(email);
+    setEmailError(error);
+    setFormValid(valid);
 
-    if (!formData.password) {
-      newErrors.password = "Password is required.";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters long.";
-    }
-
-    return newErrors;
+    return valid;
   };
 
+  const validatePasswod = (password) => {
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+
+    let error = passwordError;
+    let valid = formvalid;
+
+    if (!regex.test(password)) {
+      error =
+        "Password must have 8 characters , including Digits, Capital & Small letters";
+      valid = false;
+    } else {
+      error = "";
+      valid = true;
+    }
+
+    setPassword(password);
+    setPasswordError(error);
+    setFormValid(valid);
+    return valid;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      alert("Signup successful!");
-      setFormData({ name: "", email: "", password: "" }); // Reset form
+    if (
+      validateEmail(email) &&
+      validatePasswod(password) &&
+      validateName(fullname)
+    ) {
+      alert("Account Created Successfully");
+
+      const userdata = {
+        fullname,
+        email,
+        password,
+      };
+      getSignUpData(userdata);
+      setFullName("");
+      setEmail("");
+      setPassword("");
     }
-
-    console.log("Form submitted with data: ", formData); // Add log to check data submission
   };
-
   return (
-    <div className="bg-black text-white min-h-screen flex justify-center">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white bg-opacity-30 p-6 rounded-lg shadow-md w-full max-w-md"
-      >
-        <h1 className="text-2xl font-bold mb-4">Signup</h1>
-
-        {/* Name Field */}
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium mb-1">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-700 rounded bg-white bg-opacity-30 text-white"
-            placeholder="Enter your name"
-          />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-          )}
-        </div>
-
-        {/* Email Field */}
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-700 rounded bg-white bg-opacity-30 text-white"
-            placeholder="Enter your email"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-          )}
-        </div>
-
-        {/* Password Field */}
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium mb-1">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-700 rounded bg-white bg-opacity-30 text-white"
-            placeholder="Enter your password"
-          />
-          {errors.password && (
-            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-          )}
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-transparent border border-white hover:bg-black  text-white font-medium py-2 px-4 rounded"
+    <div className="relative w-full h-screen bg-black ">
+      <div className="absolute mx-[30%] inset-0 bg-white bg-opacity-20 border border-white border-2 ">
+        <form
+          onSubmit={handleSubmit}
+          className="relative z-10 flex flex-col items-center justify-center h-full text-white"
         >
-          Signup
-        </button>
-      </form>
+          <h1 className="text-2xl font-bold mb-4">Signup</h1>
+
+          {/* Name Field */}
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={fullname}
+              onChange={handleChange}
+              className="w-full p-2 bg-transparent border border-white text-white"
+              placeholder="Enter your name"
+            />
+            <p className="text-red-500">{nameError}</p>
+          </div>
+
+          {/* Email Field */}
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              className="w-full p-2 bg-transparent border border-white text-white"
+              placeholder="Enter your email"
+            />
+            <p className="text-red-500">{emailError}</p>
+          </div>
+
+          {/* Password Field */}
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium mb-1"
+            >
+              Password
+            </label>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              className="w-full p-2 bg-transparent border border-white text-white"
+              placeholder="Enter your password"
+            />
+          </div>
+          <p className="mx-4 text-red-500">{passwordError}</p>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="hover:bg-transparent border border-white bg-black  text-white font-medium py-2 px-4 rounded"
+          >
+            Signup
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

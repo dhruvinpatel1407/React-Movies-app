@@ -20,7 +20,7 @@ function Router() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/movies" element={<Movie/>} />
-        <Route path='/login' element={<Login />}/> 
+        <Route path="/movie-world/:formType" element={<Login />}/> 
         <Route path="/movies/:movies_Title" element={<Moviedetails />} />
         <Route path="/contact/feedback" element={<Feedbackcard/>}></Route>
     </Routes>
