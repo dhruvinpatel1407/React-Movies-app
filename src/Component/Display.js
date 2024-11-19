@@ -6,7 +6,7 @@ function Display({ feedbackData }) {
     <div>
       {feedbackData.map((userdata) => {
         return (
-          <div className="max-w-sm mx-auto bg-black bg-opacity-30 border border-1 border-white text-white shadow-lg rounded-lg overflow-hidden my-4 ">
+          <div className="max-w-sm mx-auto lg:mt-10 bg-black bg-opacity-30 border border-1 border-white text-white shadow-lg rounded-lg overflow-hidden my-4 ">
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2 text-white">
                 {userdata.fullname}

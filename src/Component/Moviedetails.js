@@ -10,12 +10,12 @@ function Moviedetails() {
   );
 
   return (
-    <div className="pt-20 px-4 md:px-12 lg:px-48 pb-12 bg-black">
+    <div className="pt-20 px-8 md:px-12 lg:px-48 pb-12 bg-black">
       <h4 className="font-bold text-white text-4xl mb-4">Movie Details :</h4>
       {filteredData.map((movie) => {
         return (
           <div className="col s12 m7 bg-white bg-opacity-30">
-            <div className="card flex flex-wrap sm:flex-nowrap shadow-lg border border-white border-2 rounded-md">
+            <div className="card flex flex-col md:flex-row flex-wrap sm:flex-nowrap shadow-lg border border-white border-2 rounded-md">
               <div className="card-image border border-white border-2 m-4">
                 <img
                   src={movie.big_image}
@@ -23,7 +23,7 @@ function Moviedetails() {
                   className="w-full sm:w-[300px] md:w-[400px] h-[250px] sm:h-[350px] object-cover"
                 />
               </div>
-              <div className="my-4 sm:my-8 sm:mr-8 card-stacked sm:pl-8 md:pl-12 bg-white bg-opacity-30 flex-1">
+              <div className="my-4 sm:my-8 sm:mr-8 card-stacked p-4 sm:pl-8 md:pl-12 bg-white bg-opacity-30 flex-1">
                 <div className="card-content">
                   <h4 className="underline text-white font-bold italic text-lg sm:text-xl md:text-2xl">
                     {movie.title}

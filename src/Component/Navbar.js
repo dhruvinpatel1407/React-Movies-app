@@ -45,7 +45,7 @@ function Navbar() {
         <ul
           className={`${
             isOpen ? "block" : "hidden"
-          } md:flex space-x-6 text-white absolute md:static top-16 left-0 w-full bg-black md:bg-transparent md:w-auto px-4 md:px-0`}
+          } md:flex md:space-x-6 text-white absolute md:static top-16 left-0 w-full bg-black md:bg-transparent md:w-auto px-4`}
         >
           <li onClick={closeMenu}>
             <Link

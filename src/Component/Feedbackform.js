@@ -130,8 +130,8 @@ function Feedbackform({ getFeedBackData }) {
 
   return (
     <>
-      <div className="relative w-full pt-8 min-h-screen bg-black">
-  <div className="absolute inset-0 mx-4 sm:mx-20 lg:mx-[30%] mt-10 bg-white bg-opacity-10 rounded-md ">
+      <div className="relative w-full pt-8 h-screen bg-black">
+  <div className="absolute inset-0 mx-4 md:my-36 max-h-screen lg:min-h-screen sm:my-44 lg:my-12 sm:mx-20 lg:mx-[25%] mt-10 bg-white bg-opacity-10 rounded-md ">
     <form
       onSubmit={handleSubmit}
       className="relative z-10 flex flex-col items-center content-center justify-center text-white text-center"
@@ -141,7 +141,7 @@ function Feedbackform({ getFeedBackData }) {
       </h4>
       <div> 
         {/* Name Field */}
-        <div className="mb-6 w-2/3 sm:w-3/4 lg:w-full">
+        <div className="mb-6 w-full">
           <label htmlFor="fullname" className="text-left block text-sm font-medium mb-2">
             Name:
           </label>
@@ -158,7 +158,7 @@ function Feedbackform({ getFeedBackData }) {
         </div>
 
         {/* Email Field */}
-        <div className="mb-6 w-2/3 sm:w-3/4 lg:w-full">
+        <div className="mb-6 w-full">
           <label htmlFor="email" className="text-left block text-sm font-medium mb-2">
             Email:
           </label>
@@ -175,7 +175,7 @@ function Feedbackform({ getFeedBackData }) {
         </div>
 
         {/* Phone Field */}
-        <div className="mb-6 w-2/3 sm:w-3/4 lg:w-full">
+        <div className="mb-6 w-full">
           <label htmlFor="phone" className="text-left block text-sm font-medium mb-2">
             Contact No:
           </label>
@@ -192,7 +192,7 @@ function Feedbackform({ getFeedBackData }) {
         </div>
 
         {/* Message Field */}
-        <div className="mb-4 w-2/3 sm:w-3/4 lg:w-full">
+        <div className="mb-4 w-full">
           <label htmlFor="msg" className="text-left block text-sm font-medium mb-2">
             Message:
           </label>
