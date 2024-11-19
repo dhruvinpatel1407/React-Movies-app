@@ -10,13 +10,13 @@ function Moviedetails() {
   );
 
   return (
-    <div className="pt-20 px-48 pb-12 bg-black">
+    <div className="pt-20 px-4 md:px-12 lg:px-48 pb-12 bg-black">
       <h4 className="font-bold text-white text-4xl mb-4">Movie Details :</h4>
       {filteredData.map((movie) => {
         return (
           <div className="col s12 m7 bg-white bg-opacity-30">
-            <div className="card flex flex-wrap md:flex-nowrap shadow-lg border border-white border-2 rounded-md">
-              <div className="card-image border border-white border-2 m-4 sm:m-8">
+            <div className="card flex flex-wrap sm:flex-nowrap shadow-lg border border-white border-2 rounded-md">
+              <div className="card-image border border-white border-2 m-4">
                 <img
                   src={movie.big_image}
                   alt={movie.id}
