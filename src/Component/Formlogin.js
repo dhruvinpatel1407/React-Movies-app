@@ -61,7 +61,7 @@ function Formlogin({getLoginData}) {
     e.preventDefault();
 
     if (validateEmail(email) && validatePasswod(password)) {
-      alert("Successfully Login");
+      // alert("Successfully Login");
 
       const userdata = {
         email,
@@ -75,57 +75,58 @@ function Formlogin({getLoginData}) {
 
   return (
     <>
-      <div className="relative w-full h-screen bg-black ">
-        
-        <div className="absolute mx-[30%] inset-0 bg-white bg-opacity-20 border border-white border-2 ">
-          <form
-            onSubmit={handleSubmit}
-            className="relative z-10 flex flex-col items-center justify-center h-full text-white"
-          >
-            <p className="text-white">Get login to acccess you account</p>
-            <label htmlFor="email"></label>
-            <input
-              type="text"
-              placeholder="Email Address"
-              name="email"
-              id="email"
-              value={email}
-              onChange={handlechange}
-              className="text-white border border-white border-1 p-2 m-2 bg-transparent mt-12"
-            />
-            <p className="text-red-500">{emailError}</p>
-            <label htmlFor="password"></label>
-            <input
-              type="text"
-              placeholder="Password"
-              name="password"
-              id="password"
-              value={password}
-              className="text-white border border-white border-1 p-2 m-2  bg-transparent "
-              onChange={handlechange}
-            />
-            <p className="text-red-500">{passwordError}</p>
+     <div className="relative w-full h-screen bg-black">
+  <div className="absolute mx-auto inset-0 bg-white bg-opacity-20 border border-white border-2 max-w-lg w-full">
+    <form
+      onSubmit={handleSubmit}
+      className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 sm:px-8"
+    >
+      <p className="text-white text-lg sm:text-xl">Get login to access your account</p>
+      
+      <label htmlFor="email" className="sr-only">Email Address</label>
+      <input
+        type="text"
+        placeholder="Email Address"
+        name="email"
+        id="email"
+        value={email}
+        onChange={handlechange}
+        className="text-white border border-white p-2 m-2 bg-transparent mt-12 w-full sm:w-3/4 lg:w-1/2"
+      />
+      <p className="text-red-500">{emailError}</p>
+      
+      <label htmlFor="password" className="sr-only">Password</label>
+      <input
+        type="password"
+        placeholder="Password"
+        name="password"
+        id="password"
+        value={password}
+        className="text-white border border-white p-2 m-2 bg-transparent w-full sm:w-3/4 lg:w-1/2"
+        onChange={handlechange}
+      />
+      <p className="text-red-500">{passwordError}</p>
 
-            <label htmlFor="rememberme" className="text-white">
-              <input
-                type="radio"
-                id="rememberme"
-                name="rememberme"
-                className="border border-1 border-white"
-                onChange={handlechange}
-              />
-              <span className="ml-2 m-2">Remember me</span>
-            </label>
+      <label htmlFor="rememberme" className="text-white flex items-center mt-4">
+        <input
+          type="radio"
+          id="rememberme"
+          name="rememberme"
+          className="border border-white"
+          onChange={handlechange}
+        />
+        <span className="ml-2">Remember me</span>
+      </label>
 
-            <br></br>
-            <button className="hover:bg-transparent border border-white bg-black  text-white font-medium py-2 px-4 rounded">
-              Login
-            </button>
+      <button className="hover:bg-transparent border border-white bg-black text-white font-medium py-2 px-4 rounded mt-6">
+        Login
+      </button>
 
-            <p className="text-white m-2">Forgot Password</p>
-          </form>
-        </div>
-      </div>
+      <p className="text-white m-2 text-sm sm:text-base">Forgot Password</p>
+    </form>
+  </div>
+</div>
+
     </>
   );
 }

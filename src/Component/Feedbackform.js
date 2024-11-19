@@ -28,7 +28,7 @@ function Feedbackform({ getFeedBackData }) {
     let error = nameError;
     let valid = formValid;
     if (name.trim() === "") {
-      error = "Please enter a valid name";
+      error = "Please Enter a valid name";
       valid = false;
     } else if (name.trim().length < 3) {
       error = "Name should be at least 3 characters";
@@ -124,94 +124,101 @@ function Feedbackform({ getFeedBackData }) {
       setPhone("");
       setMsg("");
     } else {
-      alert("Please check your input and try again.");
+      alert("Please Enter All Details.");
     }
   };
 
   return (
     <>
-      <div className="relative w-full pt-8 h-screen bg-black">
-        <div className="absolute  mx-[30%] mt-10 inset-0 bg-white bg-opacity-10 ">
-          <form
-            onSubmit={handleSubmit}
-            className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center"
-          >
-            <h4 className="text-2xl mt-8 mb-4">
-              Please give your valuable feedback here
-            </h4>
-            <div className="mx-auto space-y-2">
-              <div className="grid grid-cols-3 items-center gap-4">
-                <label htmlFor="fullname" className="text-right">
-                  Name :
-                </label>
-                <input
-                  id="fullname"
-                  placeholder="Enter Name"
-                  name="fullname"
-                  type="text"
-                  value={fullname}
-                  className="m-2 px-3 py-2 border rounded bg-transparent col-span-2"
-                  onChange={handlechange}
-                />
-                <p className="text-red-500">{nameError}</p>
-              </div>
-              <div className="grid grid-cols-3 items-center gap-4">
-                <label htmlFor="email" className="text-right">
-                  Email :
-                </label>
-                <input
-                  id="email"
-                  placeholder="Enter Email"
-                  name="email"
-                  type="text"
-                  value={email}
-                  className="m-2 px-3 py-2 w-100 border rounded bg-transparent col-span-2"
-                  onChange={handlechange}
-                />
-                <p className="text-red-500">{emailError}</p>
-              </div>
-              <div className="grid grid-cols-3 items-center gap-4">
-                <label htmlFor="phone" className="text-right">
-                  Contact No :
-                </label>
-                <input
-                  id="phone"
-                  placeholder="Enter Contact No"
-                  name="phone"
-                  type="text"
-                  value={phone}
-                  className="m-2 px-3 py-2 border rounded bg-transparent col-span-2"
-                  onChange={handlechange}
-                />
-                <p className="text-red-500">{phoneError}</p>
-              </div>
-              <div className="grid grid-cols-3 items-center gap-4">
-                <label htmlFor="msg" className="text-right">
-                  Message :
-                </label>
-                <textarea
-                  id="msg"
-                  placeholder="Enter your feedback"
-                  name="msg"
-                  type="text"
-                  value={msg}
-                  className= "h-16 m-2 px-3 py-2 border rounded bg-transparent col-span-2"
-                  onChange={handlechange}
-                  style={{ height: "100%" }}
-                />
-                <p className="text-red-500">{msgError}</p>
-              </div>
-            </div>
+      <div className="relative w-full pt-8 min-h-screen bg-black">
+  <div className="absolute inset-0 mx-4 sm:mx-20 lg:mx-[30%] mt-10 bg-white bg-opacity-10 rounded-md ">
+    <form
+      onSubmit={handleSubmit}
+      className="relative z-10 flex flex-col items-center content-center justify-center text-white text-center"
+    >
+      <h4 className=" text-md font-medium mb-6 sm:text-xl mt-12">
+        Please give your valuable feedback here
+      </h4>
+      <div> 
+        {/* Name Field */}
+        <div className="mb-6 w-2/3 sm:w-3/4 lg:w-full">
+          <label htmlFor="fullname" className="text-left block text-sm font-medium mb-2">
+            Name:
+          </label>
+          <input
+            id="fullname"
+            placeholder="Enter Name"
+            name="fullname"
+            type="text"
+            value={fullname}
+            className="w-full p-2 bg-transparent border border-white text-white rounded"
+            onChange={handlechange}
+          />
+          <p className="text-red-500 text-xs mt-1">{nameError}</p>
+        </div>
 
-            <button
-              type="submit"
-              className="m-4 bg-black border border-1 border-white text-white font-semibold py-2 px-4 rounded hover:bg-opacity-50 "
-            >
-              Submit
-            </button>
-          </form>
+        {/* Email Field */}
+        <div className="mb-6 w-2/3 sm:w-3/4 lg:w-full">
+          <label htmlFor="email" className="text-left block text-sm font-medium mb-2">
+            Email:
+          </label>
+          <input
+            id="email"
+            placeholder="Enter Email"
+            name="email"
+            type="text"
+            value={email}
+            className="w-full p-2 bg-transparent border border-white text-white rounded"
+            onChange={handlechange}
+          />
+          <p className="text-red-500 text-xs mt-1">{emailError}</p>
+        </div>
+
+        {/* Phone Field */}
+        <div className="mb-6 w-2/3 sm:w-3/4 lg:w-full">
+          <label htmlFor="phone" className="text-left block text-sm font-medium mb-2">
+            Contact No:
+          </label>
+          <input
+            id="phone"
+            placeholder="Enter Contact No"
+            name="phone"
+            type="text"
+            value={phone}
+           className="w-full p-2 bg-transparent border border-white text-white rounded"
+            onChange={handlechange}
+          />
+          <p className="text-red-500 text-xs mt-1">{phoneError}</p>
+        </div>
+
+        {/* Message Field */}
+        <div className="mb-4 w-2/3 sm:w-3/4 lg:w-full">
+          <label htmlFor="msg" className="text-left block text-sm font-medium mb-2">
+            Message:
+          </label>
+          <textarea
+            id="msg"
+            placeholder="Enter your feedback"
+            name="msg"
+            value={msg}
+           className="w-full p-2 bg-transparent border border-white text-white rounded"
+            onChange={handlechange}
+          />
+          <p className="text-red-500 text-xs mt-1">{msgError}</p>
         </div>
       </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="mt-4 bg-black border border-1 border-white text-white font-semibold py-2 px-4 rounded hover:bg-opacity-50 transition duration-300"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
     </>
   );
 }

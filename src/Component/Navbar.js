@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <nav className="fixed top-0 left-0 w-full flex items-center justify-between bg-black px-4 py-5 z-50">
@@ -42,44 +47,45 @@ function Navbar() {
             isOpen ? "block" : "hidden"
           } md:flex space-x-6 text-white absolute md:static top-16 left-0 w-full bg-black md:bg-transparent md:w-auto px-4 md:px-0`}
         >
-          <li>
+          <li onClick={closeMenu}>
             <Link
               to="/home"
-              className="flex items-center text-xl hover:text-gray-300"
+              className="flex items-center justify-center text-xl hover:text-gray-300"
             >
               <h6>Home</h6>
-            </Link>
+            </Link >
           </li>
-          <li>
-            <Link
-              to="/movie-world/:formType"
-              className="flex items-center text-xl hover:text-gray-300"
-            >
-              <h6>Login</h6>
-            </Link>
-          </li>
-          <li>
+          
+          <li onClick={closeMenu}>
             <Link
               to="/movies"
-              className="flex items-center text-xl hover:text-gray-300"
+              className="flex items-center justify-center text-xl hover:text-gray-300"
             >
               <h6>Movies</h6>
             </Link>
           </li>
-          <li>
+          <li onClick={closeMenu}>
             <Link
               to="/about"
-              className="flex items-center text-xl hover:text-gray-300"
+              className="flex items-center justify-center text-xl hover:text-gray-300"
             >
               <h6>About</h6>
             </Link>
           </li>
-          <li>
+          <li onClick={closeMenu}>
             <Link
               to="/contact"
-              className="flex items-center text-xl hover:text-gray-300"
+              className="flex items-center justify-center text-xl hover:text-gray-300"
             >
               <h6>Contact</h6>
+            </Link>
+          </li>
+          <li onClick={closeMenu}>
+            <Link  
+              to="/movie-world/:formType"
+              className="flex items-center justify-center text-xl hover:text-gray-300"
+            >
+              <h6 className="bg-red-900 border border-2 border-white text-white roundrd px-2 py-1">Login</h6>
             </Link>
           </li>
         </ul>

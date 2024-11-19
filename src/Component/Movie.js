@@ -5,6 +5,9 @@ import { RotatingLines } from "react-loader-spinner";
 
 function Movie() {
   const [movies, setMovies] = useState(moviesdata);
+  const [filteredMovies, setFilteredMovies] = useState(moviesdata);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const [dramaMovies, setDramaMovies] = useState([]);
   const [actionMovies, setActionMovies] = useState([]);
   const [biographyMovies, setBiographyMovies] = useState([]);
@@ -14,31 +17,44 @@ function Movie() {
   const [comedyMovies, setComedyMovies] = useState([]);
   const [horrorMovies, setHorrorMovies] = useState([]);
 
- 
- // Filtering the movies after they are fetched
+  // Filtering the movies into categories
   useEffect(() => {
-    if (movies.length > 0) {
-      setDramaMovies(movies.filter((movie) => movie.genre[0] === "Drama"));
-      setActionMovies(movies.filter((movie) => movie.genre[0] === "Action"));
-      setBiographyMovies(
-        movies.filter((movie) => movie.genre[0] === "Biography")
-      );
-      setHistoryMovies(movies.filter((movie) => movie.genre[2] === "History"));
-      setCrimeMovies(movies.filter((movie) => movie.genre[0] === "Crime"));
-      setAdventureMovies(
-        movies.filter((movie) => movie.genre[0] === "Adventure")
-      );
-      setComedyMovies(movies.filter((movie) => movie.genre[0] === "Comedy"));
-      setHorrorMovies(movies.filter((movie) => movie.genre[0] === "Horror"));
+    if (filteredMovies.length > 0) {
+      setDramaMovies(filteredMovies.filter((movie) => movie.genre[0] === "Drama"));
+      setActionMovies(filteredMovies.filter((movie) => movie.genre[0] === "Action"));
+      setBiographyMovies(filteredMovies.filter((movie) => movie.genre[0] === "Biography"));
+      setHistoryMovies(filteredMovies.filter((movie) => movie.genre[2] === "History"));
+      setCrimeMovies(filteredMovies.filter((movie) => movie.genre[0] === "Crime"));
+      setAdventureMovies(filteredMovies.filter((movie) => movie.genre[0] === "Adventure"));
+      setComedyMovies(filteredMovies.filter((movie) => movie.genre[0] === "Comedy"));
+      setHorrorMovies(filteredMovies.filter((movie) => movie.genre[0] === "Horror"));
     }
-  }, [movies]); // Runs every time the `movies` state changes
+  }, [filteredMovies]);
 
-  console.log(dramaMovies);
+  // Update the filteredMovies based on search term
+  useEffect(() => {
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredMovies(filtered);
+  }, [searchTerm, movies]);
+
   return (
     <>
-      <div className="bg-black mt-16 pb-20 overflow-x-hidden">
+      <div className="bg-black mt-16 pb-20 ">
+
+      <div className="p-4 flex justify-end mt-4">
+          <input
+            type="text"
+            placeholder="Search movies by title..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="px-4 py-2 text-white rounded-lg bg-transparent border border-2 border-white"
+          />
+        </div>
+
         {/* Drama Movies */}
-        <div id="drama" className="pt-4 ">
+        <div id="drama" className=" ">
           <p className="text-white text-2xl my-4 ml-8">Drama Movies:</p>
           <div>
             {dramaMovies.length ? (

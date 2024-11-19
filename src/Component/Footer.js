@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-black text-white py-6">
-      <div className="max-w-6xl mx-auto px-4">
+    <footer className="bg-black text-white py-6 w-full">
+      <div className=" mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           {/* Left Section */}
           <div className="text-center md:text-left">
